@@ -8,10 +8,8 @@
 
 // add enum  HorizontalTitlePosition and enum  HorizontalLinePosition. circleChild replace by icon.
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 
 /// Defines the [Stepper]'s titles position when the type is [StepperType.horizontal].
 enum HorizontalTitlePosition {
@@ -644,24 +642,26 @@ class _EnhanceStepperState extends State<EnhanceStepper>
   Widget _buildVerticalHeader(int index) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: Row(
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              // Line parts are always added in order for the ink splash to
-              // flood the tips of the connector lines.
-              _buildLine(!_isFirst(index)),
-              _buildIcon(index),
-              _buildLine(!_isLast(index)),
-            ],
-          ),
-          Expanded(
-            child: Container(
-              margin: const EdgeInsetsDirectional.only(start: 12.0),
-              child: _buildHeaderText(index),
+      child: SingleChildScrollView(
+        child: Row(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                // Line parts are always added in order for the ink splash to
+                // flood the tips of the connector lines.
+                _buildLine(!_isFirst(index)),
+                _buildIcon(index),
+                _buildLine(!_isLast(index)),
+              ],
             ),
-          ),
-        ],
+            Expanded(
+              child: Container(
+                margin: const EdgeInsetsDirectional.only(start: 12.0),
+                child: _buildHeaderText(index),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
